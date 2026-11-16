@@ -18,6 +18,10 @@ function QuizCard({ quiz, hosts, refresh }: { quiz: Quiz; hosts: string[]; refre
   const [host, setHost] = useState('')
   const event = quiz.events.find(e => e.id === selected) || quiz.events[0]
   const url = new URL('/participar/' + event.id, location.origin)
+  if (import.meta.env.MODE === 'pages') {
+    url.pathname = location.pathname
+    url.hash = '/participar/' + event.id
+  }
   const local = ['localhost','127.0.0.1','[::1]'].includes(url.hostname)
   if (local && hosts.length) url.hostname = host || hosts[0]
 
@@ -60,6 +64,7 @@ function QuizCard({ quiz, hosts, refresh }: { quiz: Quiz; hosts: string[]; refre
       {local && hosts.length > 0 && <label className="block">Endereço do notebook na rede <select value={url.hostname} onChange={e => setHost(e.target.value)}>{hosts.map(h => <option key={h}>{h}</option>)}</select></label>}
       <QRCodeSVG value={url.href} size={224} marginSize={4} title={'Participar de ' + event.name}/>
       <a className="block break-all text-cldf-blue underline" href={url.href}>{url.href}</a>
+      {import.meta.env.MODE === 'pages' && <p className="text-sm">Demonstração local ao navegador. Turmas criadas aqui e resultados ficam neste aparelho.</p>}
       {local && <p className="text-sm">{hosts.length ? 'Para escanear pelo celular, conecte-o à mesma rede do notebook.' : 'Abra o painel pelo endereço de rede do notebook para compartilhar com celulares.'}</p>}
     </div>}
     {panel === 'report' && <section aria-label="Relatório da turma" className="space-y-4 border-t border-blue-100 pt-4">

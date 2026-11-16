@@ -59,6 +59,7 @@ export default function Login({ admin = false }: { admin?: boolean }) {
     <section className="w-full max-w-md rounded-3xl bg-white p-7 shadow-lg">
       <p className="mb-2 font-bold text-cldf-blue">CLDF · Educação para a Cidadania</p>
       <h1 className="mb-6 font-display text-3xl font-black text-cldf-blue">{admin ? 'Acesso administrativo' : register ? 'Criar conta' : 'Acesso do participante'}</h1>
+      {import.meta.env.MODE === 'pages' && <p className="mb-4 rounded-xl bg-blue-50 p-3 text-sm">Demonstração no navegador. Use dados fictícios. Cadastros e resultados ficam neste navegador.</p>}
       <form onSubmit={submit} key={String(register)}><fieldset disabled={busy} className="space-y-4">
         {register && <label className="block">Nome<input className={inputClass} name="name" autoComplete="name" maxLength={100} required /></label>}
         {admin ? <label className="block">Usuário<input className={inputClass} name="username" autoComplete="username" required /></label> :

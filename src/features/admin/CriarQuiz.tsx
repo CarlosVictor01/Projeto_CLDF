@@ -1,7 +1,7 @@
 import { routes } from '@/routes'
 import { useQuizEditor } from './useQuizEditor'
 import { ArrowLeftIcon, PlusIcon, TrashIcon, CheckIcon } from './icons'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
 export default function CriarQuiz() {
   const navigate = useNavigate()
@@ -64,7 +64,7 @@ export default function CriarQuiz() {
             <div>
               <p className="m-0 font-display text-sm font-extrabold">Quiz salvo com sucesso</p>
               <p className="mb-0 mt-1 text-xs font-medium text-green-700">
-                <a className="block underline" href={'/participar/' + savedId}>Abrir link de participação</a>
+                <Link className="block underline" to={'/participar/' + savedId}>Abrir link de participação</Link>
                 “{title}” está pronto com {questions.length} {questions.length === 1 ? 'pergunta' : 'perguntas'}.
               </p>
             </div>

@@ -1,5 +1,5 @@
 import { routes } from '@/routes'
-import { RouterProvider, createBrowserRouter } from 'react-router'
+import { Link, RouterProvider, createBrowserRouter, createHashRouter } from 'react-router'
 import Inicio from './features/learning/Inicio'
 import Jornada from './features/learning/Jornada'
 import Desafio from './features/quiz/Desafio'
@@ -16,7 +16,8 @@ import Login, { protect, adminLoginLoader } from './features/auth/Login'
 const participant = protect('participante')
 const admin = protect('admin')
 
-const router = createBrowserRouter([
+const createRouter = import.meta.env.MODE === 'pages' ? createHashRouter : createBrowserRouter
+const router = createRouter([
   { path: '/login', element: <Login key="participante" /> },
   { path: '/admin/login', loader: adminLoginLoader, element: <Login key="admin" admin /> },
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       await participant(args)
       return request<PublishedQuiz>('/api/quizzes/' + args.params.id + '/inscricao', {})
     },
-    errorElement: <main className="p-6"><h1>Não foi possível abrir o quiz.</h1><p>Confira o link e a conexão com o servidor.</p><a href="/">Voltar ao início</a></main>,
+    errorElement: <main className="p-6"><h1>Não foi possível abrir o quiz.</h1><p>Confira o link e a conexão com o servidor.</p><Link to="/">Voltar ao início</Link></main>,
   },
   { path: routes.inicio, loader: participant, Component: Inicio },
   { path: routes.jornada, loader: participant, Component: Jornada },

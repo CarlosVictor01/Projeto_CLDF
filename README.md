@@ -47,3 +47,9 @@ As requisições POST usam JSON. O servidor valida o gabarito e calcula os acert
 
 Esta versão destina-se a uma rede de demonstração confiável. O painel e as estatísticas exigem sessão administrativa. O acesso ao quiz exige sessão de participante. Cada perfil possui seu próprio cookie HttpOnly, com validade de oito horas. Reiniciar a API encerra as sessões. A validação de e-mail verifica o formato. Para sair, use **Sair** no painel ou na área do participante. A senha administrativa da demonstração pode ser substituída pela variável de ambiente CLDF_ADMIN_PASSWORD antes de iniciar o servidor. Use HTTPS e uma senha administrativa forte ao hospedar o sistema. O GitHub Pages serve arquivos estáticos: publicar apenas a pasta dist não inicia a API.
 
+
+## Apresentar no GitHub Pages
+
+Abra https://carlosvictor01.github.io/Projeto_CLDF/ e escolha Acesso administrativo (admin / admin) ou crie uma conta fictícia de participante. A demonstração estática armazena dados neste navegador. Quizzes e turmas personalizados e respostas não se sincronizam entre aparelhos. A turma de demonstração já inclui dez exemplos. Para participação coletiva com ranking compartilhado, use a versão Node.
+
+Ao alterar o projeto, execute `pnpm build:pages` e inclua a pasta gerada `demo/` no commit. O Pages publica a raiz da branch main. O comando `pnpm dev` continua usando a API e o JSON no disco.

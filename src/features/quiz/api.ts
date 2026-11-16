@@ -1,4 +1,8 @@
 export async function request<T>(url: string, data?: unknown): Promise<T> {
+  if (import.meta.env.MODE === 'pages') {
+    const { demoRequest } = await import('./pagesDemo')
+    return await demoRequest(url, data) as T
+  }
   const response = await fetch(url, data === undefined ? {} : {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
   })

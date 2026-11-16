@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-cldf-blue: #1b3f8b;
+  --color-cldf-blue-dark: #122d6a;
+  --color-cldf-blue-mid: #2455b8;
+  --color-cldf-blue-light: #dbeafe;
+  --color-cldf-sky: #3b82f6;
+  --color-cldf-gold: #f59e0b;
+  --color-cldf-gold-light: #fef3c7;
+  --color-cldf-green: #16a34a;
+  --color-cldf-green-light: #dcfce7;
+  --color-cldf-red: #dc2626;
+  --color-cldf-red-light: #fee2e2;
+  --color-cldf-bg: #f0f5ff;
+  --font-display: 'Nunito', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f0f5ff;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 0; }
